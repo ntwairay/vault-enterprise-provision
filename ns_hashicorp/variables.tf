@@ -39,7 +39,7 @@ variable "secret_key" {
 }
 
 variable "policy_document" {
-  default = {}
+  default = ""
 }
 
 variable "base_path" {
@@ -49,5 +49,5 @@ variable "base_path" {
 }
 
 variable "role_arns" {
-  default = ["arn:aws:iam::1233455554:user/CloudAdmin"]
+  default = "arn:aws:iam::1233455554:user/CloudAdmin"
 }
