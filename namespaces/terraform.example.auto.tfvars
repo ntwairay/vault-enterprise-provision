@@ -1,2 +1,0 @@
-oidc_auth_accessor="auth_oidc_a77635fc"
-ldap_auth_accessor="auth_ldap_15150080"
