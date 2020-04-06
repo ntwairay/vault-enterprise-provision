@@ -4,30 +4,6 @@ data "vault_policy_document" "admin" {
     capabilities = ["list"]
   }
   rule {
-    path         = "sys/namespaces/ns*"
-    capabilities = ["create", "update", "delete", "list", "sudo"]
-  }
-  rule {
-    path         = "auth/*"
-    capabilities = ["update", "read", "list", "sudo"]
-  }
-  rule {
-    path         = "sys/auth/*"
-    capabilities = ["update"]
-  }
-  rule {
-    path         = "sys/auth"
-    capabilities = ["read"]
-  }
-  rule {
-    path         = "sys/policies/acl"
-    capabilities = ["list"]
-  }
-  rule {
-    path         = "sys/policies/acl/*"
-    capabilities = ["read", "list"]
-  }
-  rule {
     path         = "kv*"
     capabilities = ["create", "read", "update", "delete", "list", "sudo"]
   }
@@ -53,6 +29,33 @@ data "vault_policy_document" "admin" {
   }
   rule {
     path         = "sys/mounts"
+    capabilities = ["read"]
+  }
+}
+
+data "vault_policy_document" "dev" {
+  rule {
+    path         = "auth/token/create"
+    capabilities = ["create", "update"]
+  }
+  rule {
+    path         = "kv*"
+    capabilities = ["read","write"]
+  }
+  rule {
+    path         = "database*"
+    capabilities = ["read"]
+  }
+  rule {
+    path         = "aws*"
+    capabilities = ["read"]
+  }
+  rule {
+    path         = "ssh*"
+    capabilities = ["read"]
+  }
+  rule {
+    path         = "pki*"
     capabilities = ["read"]
   }
 }

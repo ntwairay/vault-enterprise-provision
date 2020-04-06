@@ -26,7 +26,6 @@ resource "vault_identity_group_alias" "hashicorp_namespace_admin" {
   canonical_id   = vault_identity_group.hashicorp_namespace_admin.id
 }
 
-
 resource "vault_namespace" "hashicorp" {
   path = "hashicorp"
 }
@@ -43,7 +42,7 @@ provider "vault" {
   namespace = "hashicorp"
   alias     = "ns_base"
 }
-
+# ----------------------------------------------------------------------------------------------------------------------------------
 # sub namepaces
 resource "vault_namespace" "hashicorp_ns_app1" {
   provider = vault.ns_base
@@ -54,8 +53,8 @@ provider "vault" {
   namespace = "hashicorp/ns_app1"
   alias     = "ns_sub"
 }
-
-module "ldap" {
+# ldap auth
+module "hashicorp_ns_app1_ldap" {
   source = "../modules/auth/ldap"
   base_path   = vault_namespace.hashicorp.path
   path        = "ldap"
@@ -70,6 +69,14 @@ module "ldap" {
   bindpass     = "admin"
   insecure_tls = true
 }
+# approle
+module "hashicorp_ns_app1_approle" {
+  source = "../modules/auth/approle"
+
+  base_path      = join("/", [vault_namespace.hashicorp.path, vault_namespace.hashicorp_ns_app1.path])
+  role_name      = "dev-role"
+  token_policies = ["application"]
+}
 
 resource "vault_identity_group" "hashicorp_ns_app1_admin" {
   provider = vault.ns_base
@@ -82,12 +89,12 @@ resource "vault_identity_group" "hashicorp_ns_app1_admin" {
 resource "vault_identity_group_alias" "hashicorp_ns_app1_admin" {
   provider = vault.ns_base
   name           = "dev"
-  mount_accessor = module.ldap.accessor
+  mount_accessor = module.hashicorp_ns_app1.ldap.accessor
   canonical_id   = vault_identity_group.hashicorp_ns_app1_admin.id
 }
 
 module "hashicorp_ns_app1" {
-  source = "../modules/namespace"
+  source = "../modules/sub_namespace"
 
   base_path   = join("/", [vault_namespace.hashicorp.path, vault_namespace.hashicorp_ns_app1.path])
   group_names = ["admin"]
