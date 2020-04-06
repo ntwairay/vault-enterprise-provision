@@ -57,7 +57,7 @@ provider "vault" {
 resource "vault_namespace" "hashicorp_ns_app1" {
   provider = vault.ns_base
   path = "ns_app1"
-  depends_on = [vault_namespac.hashicorp]
+  depends_on = [vault_namespace.hashicorp]
 }
 # ldap auth
 module "hashicorp_ns_app1_ldap" {
