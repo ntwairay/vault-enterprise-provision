@@ -5,9 +5,9 @@ module "oidc" {
   default_role   = "hashicorp-namespace-admin"
   # base_path      = vault_namespace.hashicorp.path
   oidc_scopes    = ["openid","profile","email"]
-  oidc_client_id = "228128a6-54ed-49f9-8a0c-053928c33cae"
-  oidc_client_secret = "T4S6yfenXWW-3uZ-DZ4:BvzzBX-M9wCE"
-  oidc_discovery_url = "https://login.microsoftonline.com/88a4986e-ab2a-4006-98b6-c899a41158ab/v2.0"
+  oidc_client_id = var.oidc_client_id
+  oidc_client_secret = var.oidc_client_secret
+  oidc_discovery_url = "https://login.microsoftonline.com/${var.oidc_tenant_id}/v2.0"
   allowed_redirect_uris = ["http://localhost:8200/oidc/callback", "https://vault.servian-sg.gradeous.io/ui/vault/auth/oidc/oidc/callback"]
 }
 
@@ -58,18 +58,18 @@ module "hashicorp_ns_app1_ldap" {
   source = "../modules/auth/ldap"
   base_path   = vault_namespace.hashicorp.path
   path        = "ldap"
-  ldap_url    = "ldap://13.239.8.17"
+  ldap_url    = var.ldap_url
   userdn      = "ou=users,dc=example,dc=org"
   userattr    = "cn"
   discoverdn  = false
   groupdn     = "ou=groups,dc=example,dc=org"
   group_filter = "(objectclass=groupOfNames)"
   group_name   = "dev"
-  binddn       = "cn=admin,dc=example,dc=org"
-  bindpass     = "admin"
+  binddn       = var.binddn
+  bindpass     = var.bindpass
   insecure_tls = true
 }
-# approle
+# approle auth
 module "hashicorp_ns_app1_approle" {
   source = "../modules/auth/approle"
 
