@@ -29,3 +29,25 @@ variable "binddn" {
 variable "bindpass" {
   default = ""
 }
+
+variable "access_key" {
+  default = ""
+}
+
+variable "secret_key" {
+  default = ""
+}
+
+variable "policy_document" {
+  default = {}
+}
+
+variable "base_path" {
+  description = "The namespace path this one is nested in if any"
+  type        = string
+  default     = ""
+}
+
+variable "role_arns" {
+  default = ["arn:aws:iam::1233455554:user/CloudAdmin"]
+}
