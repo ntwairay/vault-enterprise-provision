@@ -89,7 +89,7 @@ resource "vault_identity_group" "hashicorp_ns_app1_admin" {
 resource "vault_identity_group_alias" "hashicorp_ns_app1_admin" {
   provider = vault.ns_base
   name           = "dev"
-  mount_accessor = module.hashicorp_ns_app1.ldap.accessor
+  mount_accessor = module.hashicorp_ns_app1_ldap.accessor
   canonical_id   = vault_identity_group.hashicorp_ns_app1_admin.id
 }
 
