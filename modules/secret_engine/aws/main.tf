@@ -15,5 +15,4 @@ resource "vault_aws_secret_backend_role" "role" {
   name    = var.backend_role_name
   credential_type = var.credential_type
   role_arns       = var.role_arns
-  policy_document = var.policy_document
 }

@@ -119,5 +119,5 @@ module "hashicorp_ns_app1_aws_secret_engine" {
   secret_key = var.secret_key
   backend_role_name = "aws_dev_iam_role"
   credential_type   = "assumed_role"
-  role_arns         = var.role_arns
+  role_arns         = ["arn:aws:iam::${var.aws_account_id}:role/ptfe_role"]
 }
