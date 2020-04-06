@@ -27,3 +27,7 @@ variable "base_path" {
 variable "role_arns" {
   default = ["arn:aws:iam::147023583094:user/CloudAdmin"]
 }
+
+variable "path" {
+  default = "aws"
+}

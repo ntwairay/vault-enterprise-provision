@@ -5,6 +5,7 @@ provider "vault" {
 
 resource "vault_aws_secret_backend" "aws" {
   provider   = vault.ns_base
+  path       = var.path
   access_key = var.access_key
   secret_key = var.secret_key
 }

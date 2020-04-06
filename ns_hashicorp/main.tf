@@ -115,6 +115,7 @@ module "hashicorp_ns_app1_aws_secret_engine" {
   source = "../modules/secret_engine/aws"
 
   base_path  = join("/", [vault_namespace.hashicorp.path, vault_namespace.hashicorp_ns_app1.path])
+  path       = "aws-dev"
   access_key = var.access_key
   secret_key = var.secret_key
   backend_role_name = "aws_dev_iam_role"
