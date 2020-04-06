@@ -40,7 +40,7 @@ data "vault_policy_document" "dev" {
   }
   rule {
     path         = "kv*"
-    capabilities = ["read","write"]
+    capabilities = ["read", "update"]
   }
   rule {
     path         = "database*"
