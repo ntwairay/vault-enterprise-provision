@@ -1,11 +1,3 @@
-variable "role_id" {
-  default = ""
-}
-
-variable "secret_id" {
-  default = ""
-}
-
 variable "oidc_client_id" {
   default = ""
 }
