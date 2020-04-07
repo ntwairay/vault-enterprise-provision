@@ -1,1 +1,1 @@
-# Terraform Vault Provision demo 7/4/2020
+# Terraform Vault Provision demo
