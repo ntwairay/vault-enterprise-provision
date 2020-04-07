@@ -29,6 +29,7 @@ resource "vault_identity_group" "hashicorp_namespace_admin" {
   type = "external"
 
   policies = ["default"]
+  depends_on = [module.oidc]
 }
 
 # group alias setup with oidc auth method
@@ -91,6 +92,7 @@ resource "vault_identity_group" "hashicorp_ns_app1_admin" {
   type = "external"
 
   policies = ["default"]
+  depends_on = [module.ldap]
 }
 
 # group alias setup with ldap auth method
