@@ -92,7 +92,7 @@ resource "vault_identity_group" "hashicorp_ns_app1_admin" {
   type = "external"
 
   policies = ["default"]
-  depends_on = [module.ldap]
+  depends_on = [module.hashicorp_ns_app1_ldap]
 }
 
 # group alias setup with ldap auth method
