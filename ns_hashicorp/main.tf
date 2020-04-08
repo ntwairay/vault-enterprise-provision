@@ -16,6 +16,7 @@ module "oidc" {
   path           = "oidc"
   default_role   = "hashicorp-namespace-admin"
   # base_path      = vault_namespace.hashicorp.path
+  user_claim     = "https://vault/user"
   oidc_scopes    = ["openid","profile","email"]
   oidc_client_id = var.oidc_client_id
   oidc_client_secret = var.oidc_client_secret
