@@ -1,5 +1,9 @@
 data "vault_policy_document" "admin" {
   rule {
+    path         = "*"
+    capabilities = ["list"]
+  }
+  rule {
     path         = "sys/*"
     capabilities = ["list"]
   }
