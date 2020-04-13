@@ -125,8 +125,3 @@ module "hashicorp_ns_app1_aws_secret_engine" {
   credential_type   = "assumed_role"
   role_arns         = ["arn:aws:iam::${var.aws_account_id}:role/ptfe_role"]
 }
-
-vault write auth/oidc/role/hashicorp-namespace-admin user_claim="email" \
-    allowed_redirect_uris="http://localhost:8200/oidc/callback,https://vault.servian-sg.gradeous.io/ui/vault/auth/oidc/oidc/callback"  \
-    groups_claim="groups" \
-    policies=default
