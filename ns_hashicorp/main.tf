@@ -38,6 +38,7 @@ resource "vault_identity_group_alias" "hashicorp_namespace_admin" {
   name           = "7f5421f4-9407-4885-b66d-a9b564fc6f71"
   mount_accessor = module.oidc.accessor
   canonical_id   = vault_identity_group.hashicorp_namespace_admin.id
+  depends_on = [vault_identity_group.hashicorp_namespace_admin]
 }
 
 # configure namespace
